@@ -5,10 +5,4 @@ export namespace App {
   export enum PORT {
     DEFAULT = '8001'
   }
-  export enum SERVER_STATUS {
-    UP = 'Server is up and running'
-  }
-  export enum ROUTES {
-    DEFAULT = '/'
-  }
 }

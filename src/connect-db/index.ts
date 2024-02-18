@@ -21,7 +21,7 @@ class AppConnect implements Connect.DBConnectionConfig {
   }
 
   private handleError(error: Error): void {
-    Logger.error(Connect.DB_STATUS.DOWN)
+    Logger.error(Connect.DB_STATUS.DOWN, error)
     process.exit(1)
   }
 }

@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import logger, { Logger as LoggerType } from 'pino'
 import { AppLogger } from './logger.interface'
+import { Error } from 'mongoose'
 
 class AppLog implements AppLogger.Logger {
   private logger: LoggerType
@@ -22,8 +23,8 @@ class AppLog implements AppLogger.Logger {
     this.logger.info(`${message}`)
   }
 
-  public error(message: string): void {
-    this.logger.error(`${message}`)
+  public error(message: string, error: Error): void {
+    this.logger.error(`${message} ${error}`)
   }
 
   public warn(message: string): void {
