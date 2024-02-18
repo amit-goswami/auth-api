@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import { config } from 'dotenv'
 import { Connect } from './connect-db.interface'
+import { Logger } from '../logger'
 
 class AppConnect implements Connect.DBConnectionConfig {
   private url: string
@@ -13,14 +14,14 @@ class AppConnect implements Connect.DBConnectionConfig {
   async connect(): Promise<void> {
     try {
       await mongoose.connect(this.url)
-      console.log(Connect.DB_STATUS.UP)
+      Logger.log(Connect.DB_STATUS.UP)
     } catch (error) {
       this.handleError(error)
     }
   }
 
   private handleError(error: Error): void {
-    console.error(Connect.DB_STATUS.DOWN, error)
+    Logger.error(Connect.DB_STATUS.DOWN)
     process.exit(1)
   }
 }

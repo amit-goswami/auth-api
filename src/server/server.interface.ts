@@ -8,4 +8,7 @@ export namespace App {
   export enum SERVER_STATUS {
     UP = 'Server is up and running'
   }
+  export enum ROUTES {
+    DEFAULT = '/'
+  }
 }

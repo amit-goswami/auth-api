@@ -2,6 +2,7 @@ import express, { Application } from 'express'
 import { config } from 'dotenv'
 import { App } from './server.interface'
 import { MongoDBCApponnection } from '../connect-db'
+import { Logger } from '../logger'
 
 class Server implements App.IAppServer {
   public app: Application
@@ -15,14 +16,14 @@ class Server implements App.IAppServer {
   }
 
   private healthCheck() {
-    this.app.get('/', (_req, res) => {
+    this.app.get(App.ROUTES.DEFAULT, (_req, res) => {
       res.send(App.SERVER_STATUS.UP)
     })
   }
 
   public start() {
     this.app.listen(this.port, () => {
-      console.log(`Server started at http://localhost:${this.port}`)
+      Logger.log(`Server started at http://localhost:${this.port}`)
     })
     MongoDBCApponnection.connect()
   }
