@@ -1,19 +1,22 @@
-import dotenv from 'dotenv'
 import express, { Application } from 'express'
+import { config } from 'dotenv'
+import { App } from './server.interface'
+import { MongoDBCApponnection } from '../connect-db'
 
-class Server {
+class Server implements App.IAppServer {
   public app: Application
   public port: string
 
   constructor() {
-    dotenv.config()
+    config()
     this.app = express()
-    this.port = process.env.PORT || '8001'
+    this.port = process.env.PORT || App.PORT.DEFAULT
+    this.healthCheck()
   }
 
-  public healthCheck() {
+  private healthCheck() {
     this.app.get('/', (_req, res) => {
-      res.send('Server is up and running')
+      res.send(App.SERVER_STATUS.UP)
     })
   }
 
@@ -21,6 +24,7 @@ class Server {
     this.app.listen(this.port, () => {
       console.log(`Server started at http://localhost:${this.port}`)
     })
+    MongoDBCApponnection.connect()
   }
 }
 
