@@ -1,9 +1,11 @@
 {
   "name": "auth-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.ts",
+  "module": "commonjs",
   "license": "MIT",
   "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "start": "nodemon --exec ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run compile",
