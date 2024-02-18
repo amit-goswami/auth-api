@@ -1,4 +1,4 @@
-export namespace Connect {
+export namespace ConnectType {
   export interface DBConnectionConfig {
     connect(): Promise<void>
   }

@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { AppRouter } from './routes.interface'
+import { AppRouterType } from './routes.interface'
 import { UserRoutes } from './user'
 import { AuthRoutes } from './auth'
 
-class AppRoute implements AppRouter.IAppRoute {
+class AppRoute implements AppRouterType.IAppRoute {
   private route = Router()
 
   constructor() {
@@ -13,16 +13,16 @@ class AppRoute implements AppRouter.IAppRoute {
   }
 
   private authRoutes() {
-    this.route.use(AuthRoutes.getRoutes())
+    this.route.use(AppRouterType.ROUTES.BASE, AuthRoutes.getRoutes())
   }
 
   private userRoutes() {
-    this.route.use(UserRoutes.getRoutes())
+    this.route.use(AppRouterType.ROUTES.BASE, UserRoutes.getRoutes())
   }
 
   private healthCheck() {
-    this.route.get(AppRouter.ROUTES.DEFAULT, (_req, res) => {
-      res.send(AppRouter.SERVER_STATUS.UP)
+    this.route.get(AppRouterType.ROUTES.DEFAULT, (_req, res) => {
+      res.send(AppRouterType.SERVER_STATUS.UP)
     })
   }
 
@@ -31,4 +31,4 @@ class AppRoute implements AppRouter.IAppRoute {
   }
 }
 
-export const Routes = new AppRoute()
+export const Route = new AppRoute()

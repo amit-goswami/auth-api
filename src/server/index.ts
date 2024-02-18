@@ -1,9 +1,9 @@
 import express, { Application } from 'express'
 import { config } from 'dotenv'
 import { App } from './server.interface'
-import { MongoDBCApponnection } from '../connect-db'
+import { Connect } from '../connect-db'
 import { Logger } from '../logger'
-import { Routes } from '../routes'
+import { Route } from '../routes'
 
 class Server implements App.IAppServer {
   public app: Application
@@ -16,7 +16,7 @@ class Server implements App.IAppServer {
   }
 
   private routesInit() {
-    this.app.use(Routes.getRoutes())
+    this.app.use(Route.getRoutes())
   }
 
   private listen() {
@@ -28,7 +28,7 @@ class Server implements App.IAppServer {
   public start() {
     this.routesInit()
     this.listen()
-    MongoDBCApponnection.connect()
+    Connect.connect()
   }
 }
 

@@ -1,9 +1,9 @@
 import dayjs from 'dayjs'
 import logger, { Logger as LoggerType } from 'pino'
-import { AppLogger } from './logger.interface'
+import { AppLoggerType } from './logger.interface'
 import { Error } from 'mongoose'
 
-class AppLog implements AppLogger.Logger {
+class AppLogger implements AppLoggerType.Logger {
   private logger: LoggerType
 
   constructor() {
@@ -32,4 +32,4 @@ class AppLog implements AppLogger.Logger {
   }
 }
 
-export const Logger = new AppLog()
+export const Logger = new AppLogger()

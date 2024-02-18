@@ -1,6 +1,7 @@
-export namespace AppRouter {
+export namespace AppRouterType {
   export enum ROUTES {
-    DEFAULT = '/'
+    DEFAULT = '/',
+    BASE = '/api'
   }
   export interface IAppRoute {}
   export enum SERVER_STATUS {

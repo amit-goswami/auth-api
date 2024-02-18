@@ -1,6 +1,7 @@
 import { Router } from 'express'
+import { AppUserRoutesType } from './user-route.interface'
 
-export class AppUserRoutes {
+export class AppUserRoutes implements AppUserRoutesType.IUserRoute {
   public route = Router()
 
   constructor() {
@@ -15,7 +16,7 @@ export class AppUserRoutes {
   }
 
   private userPost() {
-    this.route.post('/user', (_req, res) => {
+    this.route.post(AppUserRoutesType.ROUTES.USERS, (_req, res) => {
       res.send('User created')
     })
   }
