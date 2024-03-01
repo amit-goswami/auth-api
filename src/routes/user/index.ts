@@ -17,7 +17,7 @@ export class AppUserRoutes implements AppUserRoutesType.IUserRoute {
 
   private userPost() {
     this.route.post(AppUserRoutesType.ROUTES.USERS, (_req, res) => {
-      res.send('User created')
+      res.send('User post')
     })
   }
 
